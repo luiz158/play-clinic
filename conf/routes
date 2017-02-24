@@ -3,3 +3,4 @@
 # ~~~~
 
 GET /owners   com.github.mszarlinski.playframework.petclinic.owners.port.adapters.rest.OwnersEndpoint.getOwners
+POST /owners  com.github.mszarlinski.playframework.petclinic.owners.port.adapters.rest.OwnersEndpoint.saveOwner

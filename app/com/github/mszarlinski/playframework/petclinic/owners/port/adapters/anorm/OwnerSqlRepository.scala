@@ -36,5 +36,15 @@ class OwnerSqlRepository @Inject()(db: Database) extends OwnerRepository {
 
   override def findById(id: Long): Option[Owner] = ???
 
-  override def save(owner: Owner): Option[Owner] = ???
+  override def save(owner: Owner): Option[Owner] = {
+    db.withConnection { implicit connection =>
+      SQL(
+        """
+        INSERT INTO owners(first_name, last_name)
+        VALUES ({firstName}, {lastName})
+        """).on('firstName -> owner.firstName, 'lastName -> owner.lastName)
+        .executeInsert()
+        .map(genId => owner.copy(id = genId))
+    }
+  }
 }
