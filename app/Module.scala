@@ -1,3 +1,5 @@
+import com.github.mszarlinski.playframework.petclinic.owners.domain.OwnerRepository
+import com.github.mszarlinski.playframework.petclinic.owners.port.adapters.anorm.OwnerSqlRepository
 import com.google.inject.AbstractModule
 import java.time.Clock
 
@@ -23,6 +25,8 @@ class Module extends AbstractModule {
     bind(classOf[ApplicationTimer]).asEagerSingleton()
     // Set AtomicCounter as the implementation for Counter.
     bind(classOf[Counter]).to(classOf[AtomicCounter])
+
+    bind(classOf[OwnerRepository]).to(classOf[OwnerSqlRepository])
   }
 
 }
